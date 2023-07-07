@@ -1,0 +1,276 @@
+Q1. Write a program to show Interface Example in java?
+
+interface printable{  
+void print();  
+}  
+class A6 implements printable{  
+public void print(){System.out.println("Hello");}  
+  
+public static void main(String args[]){  
+A6 obj = new A6();  
+obj.print();  
+ }  
+} 
+
+
+Q2.Write a program a Program with 2 concrete method and 2 abstract method in java ?
+
+// Abstract class example  
+abstract class AbstractExample {  
+   
+    // Abstract method  
+    abstract void display();  
+   
+    // Concrete method  
+    void show()  
+    {  
+        System.out.println("Concrete method of abstract class");  
+    }  
+}  
+   
+// Subclass of abstract class  
+class SubClass extends AbstractExample {  
+   
+    // Implementing the abstract method  
+    void display()  
+    {  
+        System.out.println("Abstract method implemented");  
+    }  
+}  
+   
+/** 
+ * Main class 
+ */  
+public class AbstractClass{  
+   
+    public static void main(String args[])  
+    {  
+        // Creating an object of the subclass  
+        SubClass obj = new SubClass();  
+   
+        // Calling the abstract method  
+        obj.display();  
+   
+        // Calling the concrete method  
+        obj.show();  
+    }  
+}  
+
+
+Q3.Write a program  to show the use of functional interface in java?
+
+class Test {
+    public static void main(String args[])
+    {
+        // create anonymous inner class object
+        new Thread(new Runnable() {
+            @Override public void run()
+            {
+                System.out.println("New thread created");
+            }
+        }).start();
+    }
+}
+
+Q4.What is an interface in Java?
+
+
+An interface in Java is a blueprint of a class. It has static constants and abstract methods.
+
+The interface in Java is a mechanism to achieve abstraction. There can be only abstract methods in the Java interface, not method body. It is used to achieve abstraction and multiple inheritance in Java.
+
+In other words, you can say that interfaces can have abstract methods and variables. It cannot have a method body.
+
+Java Interface also represents the IS-A relationship.
+
+
+It cannot be instantiated just like the abstract class.
+
+Since Java 8, we can have default and static methods in an interface.
+
+Since Java 9, we can have private methods in an interface.
+
+Why use Java interface?
+There are mainly three reasons to use interface. They are given below.
+
+It is used to achieve abstraction.
+By interface, we can support the functionality of multiple inheritance.
+It can be used to achieve loose coupling.
+
+
+
+Q5.What is the use of interface in Java?
+
+An interface in Java has remained a complex topic for many beginners to understand. The first thing which puzzles many programmers is the fact that you cannot define any method inside interface, it a just declaration. By rule, all method inside interface must be abstract (Well, this rule is changing in Java 8 to allow lambda expressions, now interface can have one non-abstract method, also known as a default method). So, if you can't define anything, Why we need an interface?  what's the use of an interface, if we are anyway going to write a class and override them to provide behaviour, Can't we declare those methods inside the class itself without using interface etc. Well, if you are thinking in terms of behaviour then you are really missing the point of interface.
+
+
+It is used to achieve total abstraction.
+Since java does not support multiple inheritances in the case of class, by using an interface it can achieve multiple inheritances.
+Any class can extend only 1 class but can any class implement infinite number of interface.
+It is also used to achieve loose coupling.
+Interfaces are used to implement abstraction. So the question arises why use interfaces when we have abstract classes?
+The reason is, abstract classes may contain non-final variables, whereas variables in the interface are final, public and static.
+I think one has to read Effective Java, to understand best use of interface. Interface is great to declare Type, they promote code reusability, and they are the real driver of polymorphism in Java.
+
+The interface also allows multiple inheritance in Java, which makes it possible for a class to become Canvas, as well as EventListener, which is used to draw graphics as well as to to process events. 
+
+In this post, I will share few points, which will help you to understand what is the actual use of interface in Java. By the way, if you are confused between abstract class and interface, then you may want to read my previous post on difference between interface and abstract class in Java. 
+
+
+Q6.What is the lambda expression of Java 8?
+
+
+In Java, Lambda expressions basically express instances of functional interfaces (An interface with a single abstract method is called a functional interface). Lambda Expressions in Java are the same as lambda functions which are the short block of code that accepts input as parameters and returns a resultant value. Lambda Expressions are recently included in Java SE 8. 
+
+Functionalities of Lambda Expression in Java
+Lambda Expressions implement the only abstract function and therefore implement functional interfaces lambda expressions are added in Java 8 and provide the below functionalities.
+
+Enable to treat functionality as a method argument, or code as data.
+A function that can be created without belonging to any class.
+A lambda expression can be passed around as if it was an object and executed on demand.
+
+interface FuncInterface
+{
+    // An abstract function
+    void abstractFun(int x);
+ 
+    // A non-abstract (or default) function
+    default void normalFun()
+    {
+       System.out.println("Hello");
+    }
+}
+ 
+class Test
+{
+    public static void main(String args[])
+    {
+        // lambda expression to implement above
+        // functional interface. This interface
+        // by default implements abstractFun()
+        FuncInterface fobj = (int x)->System.out.println(2*x);
+ 
+        // This calls above lambda expression and prints 10.
+        fobj.abstractFun(5);
+    }
+}
+
+
+
+Q7.Can you pass lambda expressions to a method? When?
+
+
+
+A lambda expression passed in a method that has an argument of type of functional interface. If we need to pass a lambda expression as an argument, the type of parameter receiving the lambda expression argument must be of a functional interface type.
+
+In the below example, the lambda expression can be passed in a method which argument's type is "TestInterface"
+interface TestInterface {
+   boolean test(int a);
+}
+class Test {
+   // lambda expression can be passed as first argument in the check() method
+   static boolean check(TestInterface ti, int b) {
+      return ti.test(b);
+   }
+}
+public class LambdaExpressionPassMethodTest {
+   public static void main(String arg[]) {
+      // lambda expression
+      boolean result = Test.check((x) -> (x%2) == 0, 10);
+      System.out.println("The result is: "+ result);
+   }
+}
+
+
+Q8.What is the functional interface in Java 8?
+
+A functional interface is an interface that contains only one abstract method. They can have only one functionality to exhibit. From Java 8 onwards, lambda expressions can be used to represent the instance of a functional interface. A functional interface can have any number of default methods. Runnable, ActionListener, and Comparable are some of the examples of functional interfaces. 
+
+Functional Interface is additionally recognized as Single Abstract Method Interfaces. In short, they are also known as SAM interfaces. Functional interfaces in Java are the new feature that provides users with the approach of fundamental programming. 
+
+Functional interfaces are included in Java SE 8 with Lambda expressions and Method references in order to make code more readable, clean, and straightforward. Functional interfaces are interfaces that ensure that they include precisely only one abstract method. Functional interfaces are used and executed by representing the interface with an annotation called @FunctionalInterface. As described earlier, functional interfaces can contain only one abstract method. However, they can include any quantity of default and static methods. 
+
+
+Example 1:
+
+Before Java 8, we had to create anonymous inner class objects or implement these interfaces.
+
+
+// Java program to demonstrate functional interface
+ 
+class Test {
+    public static void main(String args[])
+    {
+        // create anonymous inner class object
+        new Thread(new Runnable() {
+            @Override public void run()
+            {
+                System.out.println("New thread created");
+            }
+        }).start();
+    }
+}
+
+
+Q9.What is the benefit of lambda expressions in Java 8?
+
+
+Fewer Lines of Code − One of the most benefits of a lambda expression is to reduce the amount of code. We know that lambda expressions can be used only with a functional interface. For instance, Runnable is a functional interface, so we can easily apply lambda expressions.
+
+Sequential and Parallel execution support by passing behavior as an argument in methods − By using Stream API in Java 8, the functions are passed to collection methods. Now it is the responsibility of collection for processing the elements either in a sequential or parallel manner.
+
+Higher Efficiency − By using Stream API and lambda expressions, we can achieve higher efficiency (parallel execution) in case of bulk operations on collections. Also, lambda expression helps in achieving the internal iteration of collections rather than external iteration
+
+
+
+Q10.Is it mandatory for a lambda expression to have parameters?
+
+
+Lambda Expressions are anonymous functions. These functions do not need a name or a class to be used. Lambda expressions are added in Java 8. Lambda expressions basically express instances of functional interfaces An interface with a single abstract method is called a functional interface. One example is java.lang.Runnable.
+
+Lambda expressions implement only one abstract function and therefore implement functional interfaces. Predicate interface is an example of a functional interface that has only one abstract method called test().
+
+Illustration:
+
+interface Predicate
+{
+    ......
+    abstract boolean test(T t)
+}
+The above is a functional interface that has one abstract method test receiving only one parameter of type T and returns a boolean value. This method is a generic method that takes a type parameter. This interface can be implemented anywhere in a program using a lambda expression instead of creating classes with multiple functions. For eg, to implement a runnable interface used only for multithreading one needs to implement only a run() method. Then there is the comparable interface which can be implemented using compare() method.
+
+The body of a lambda expression can contain zero, one, or more statements.
+When there is a single statement curly brackets are not mandatory and the return type of the anonymous function is the same as that of the body expression.
+When there is more than one statement, then these must be enclosed in curly brackets (a code block) and the return type of the anonymous function is the same as the type of the value returned within the code block, or void if nothing is returned.
+These are for single–line lambda expressions having void return type.
+
+Type 1: No Parameter.
+
+Syntax:
+
+() -> System.out.println("Hello");
+It takes interface of the following form:
+
+interface Test1
+{
+    void print()
+}
+Type 2: Single Parameter.
+
+Syntax:
+
+(p) -> System.out.println(p);
+It is not mandatory to use parentheses if the type of that variable can be inferred from the context
+
+
+It takes interface of the following form:
+
+interface Test2
+{
+    void print(Integer p)
+}
+
+
+
+
+
